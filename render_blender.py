@@ -12,7 +12,7 @@ import bpy
 from glob import glob
 
 parser = argparse.ArgumentParser(description='Renders given obj file by rotation a camera around it.')
-parser.add_argument('--views', type=int, default=30,
+parser.add_argument('--views', type=int, default=16, #32,
                     help='number of views to be rendered')
 parser.add_argument('obj', type=str,
                     help='Path to the obj file to be rendered.')
@@ -26,13 +26,13 @@ parser.add_argument('--edge_split', type=bool, default=True,
                     help='Adds edge split filter.')
 parser.add_argument('--depth_scale', type=float, default=1.4,
                     help='Scaling that is applied to depth. Depends on size of mesh. Try out various values until you get a good result. Ignored if format is OPEN_EXR.')
-parser.add_argument('--color_depth', type=str, default='8',
+parser.add_argument('--color_depth', type=str, default='16',
                     help='Number of bit per channel used for output. Either 8 or 16.')
-parser.add_argument('--format', type=str, default='PNG',
+parser.add_argument('--format', type=str, default='OPEN_EXR',
                     help='Format of files generated. Either PNG or OPEN_EXR')
-parser.add_argument('--resolution', type=int, default=600,
+parser.add_argument('--resolution', type=int, default=128, #600,
                     help='Resolution of the images.')
-parser.add_argument('--engine', type=str, default='BLENDER_EEVEE',
+parser.add_argument('--engine', type=str, default='CYCLES', # default='BLENDER_EEVEE',
                     help='Blender internal engine for rendering. E.g. CYCLES, BLENDER_EEVEE, ...')
 
 argv = sys.argv[sys.argv.index("--") + 1:]
